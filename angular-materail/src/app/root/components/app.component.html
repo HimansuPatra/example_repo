@@ -1,0 +1,22 @@
+<!-- <mat-checkbox
+#showDialog
+[value]='2'
+[checked]='isChecked'
+(change)='onChange($event)'
+>Subscribe</mat-checkbox>
+<div *ngIf='showDialog.checked'>Show Something..</div>
+<mat-radio-group value=''>
+  <mat-radio-button value='0'>Male</mat-radio-button>
+  <mat-radio-button value='1' >FeMale</mat-radio-button>
+</mat-radio-group>
+
+ <mat-form-field appearance="fill">
+  <mat-select [(ngModel)]='food'>
+    <mat-option *ngFor="let food of foods" [value]="food.value">
+      {{food.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field> -->
+<app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

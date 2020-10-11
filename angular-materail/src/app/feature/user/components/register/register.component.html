@@ -1,0 +1,58 @@
+<div class="example-container">
+    <div class="form-container">
+      <form [formGroup]="loginForm" (submit)="submit()">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> E-mail
+          </mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+            <span *ngIf="loginForm.controls.email.errors.required">{{validate.emailRequired}}</span>
+            <span *ngIf="loginForm.controls.email.errors.pattern">{{validate.validEmail}}</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Password
+          </mat-label>
+          <input matInput formControlName="password" type="password">
+          <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+            <span *ngIf="loginForm.controls.password.errors.required">{{validate.passwordRequired}}</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-radio-group formControlName="gender" class="materialradio">
+                <mat-radio-button value='0'>Male</mat-radio-button>
+                <mat-radio-button value='1' >FeMale</mat-radio-button>
+        </mat-radio-group>
+        <mat-divider></mat-divider>  
+        <mat-label> Hobbies </mat-label>
+        <div *ngFor="let hobby of myhobbies;let i=index">
+          <mat-checkbox [value]="hobby.value" (Change)="onCheckboxChange($event)" > {{hobby.name}}</mat-checkbox>         
+        </div>
+       
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-select formControlName="country" [(value)]='selectedCountry' (selectionChange)="changeCountry($event)" >
+            <mat-option *ngFor='let count of Countries' [value]= "count.name"> {{count.name}}            
+            </mat-option>
+          </mat-select>
+        </mat-form-field> 
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-select formControlName="state"  (selectionChange)="changeState($event)">
+            <mat-option *ngFor="let stat of states" [value]= "stat.name"> {{stat.name}}            
+            </mat-option>
+          </mat-select>
+        </mat-form-field> 
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-select formControlName="city">
+            <mat-option *ngFor='let city of cities' [value]= "city"> {{city}}            
+            </mat-option>
+          </mat-select>
+        </mat-form-field> 
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput  [matDatepicker]="picker"  formControlName="doj">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Log In</button>
+      </form>
+    </div>
+  </div>
